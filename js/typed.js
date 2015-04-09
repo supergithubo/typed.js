@@ -69,16 +69,16 @@
         // current array position
         this.arrayPos = 0;
 
-        // array position for backspace target
-        this.backArrayPos = this.options.backArrayPos;
+        // element from array to perform backspacing
+        this.backspaceElement = this.options.backspaceElement;
 
         // number to stop backspacing on.
         // default 0, can change depending on how many chars
         // you want to remove at the time
         this.stopNum = 0;
 
-        // number to stop backspacing on when backspace target triggered
-        this.backStopNum = this.options.backStopNum;
+        // index of the target string backspacing should stop
+        this.backspaceIndex = this.options.backspaceIndex;
 
         // Looping logic
         this.loop = this.options.loop;
@@ -249,8 +249,8 @@
 
             self.timeout = setTimeout(function() {
 
-                if (self.arrayPos == self.backArrayPos){
-                  self.stopNum = self.backStopNum;
+                if (self.arrayPos == self.backspaceElement){
+                  self.stopNum = self.backspaceIndex;
                 }
                 else{
                   self.stopNum = 0;
@@ -364,10 +364,10 @@
         backSpeed: 0,
         // time before backspacing
         backDelay: 500,
-        // backspace string target
-        backArrayPos: 0,
-        // character position to stop when backspace string target triggered
-        backStopNum: 0,
+        // target string from the array to perform trim backspacing
+        backspaceElement: 0,
+        // index of the target string to stop backspacing
+        backspaceIndex: 0,
         // loop
         loop: false,
         // false = infinite
