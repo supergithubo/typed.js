@@ -69,10 +69,16 @@
         // current array position
         this.arrayPos = 0;
 
+        // array position for backspace target
+        this.backArrayPos = this.options.backArrayPos;
+
         // number to stop backspacing on.
         // default 0, can change depending on how many chars
         // you want to remove at the time
         this.stopNum = 0;
+
+        // number to stop backspacing on when backspace target triggered
+        this.backStopNum = this.options.backStopNum;
 
         // Looping logic
         this.loop = this.options.loop;
@@ -243,18 +249,12 @@
 
             self.timeout = setTimeout(function() {
 
-                // ----- this part is optional ----- //
-                // check string array position
-                // on the first string, only delete one word
-                // the stopNum actually represents the amount of chars to
-                // keep in the current string. In my case it's 14.
-                // if (self.arrayPos == 1){
-                //  self.stopNum = 14;
-                // }
-                //every other time, delete the whole typed string
-                // else{
-                //  self.stopNum = 0;
-                // }
+                if (self.arrayPos == self.backArrayPos){
+                  self.stopNum = self.backStopNum;
+                }
+                else{
+                  self.stopNum = 0;
+                }
 
                 if (self.contentType === 'html') {
                     // skip over html tags while backspacing
@@ -364,6 +364,10 @@
         backSpeed: 0,
         // time before backspacing
         backDelay: 500,
+        // backspace string target
+        backArrayPos: 0,
+        // character position to stop when backspace string target triggered
+        backStopNum: 0,
         // loop
         loop: false,
         // false = infinite
