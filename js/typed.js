@@ -72,6 +72,9 @@
         // element from array to perform backspacing
         this.backspaceElement = this.options.backspaceElement;
 
+        // array of backspace strings indices
+        this.backspaceIndices = this.options.backspaceIndices;
+
         // number to stop backspacing on.
         // default 0, can change depending on how many chars
         // you want to remove at the time
@@ -249,6 +252,19 @@
 
             self.timeout = setTimeout(function() {
 
+                var BackspaceElements = function(object, element){
+                  for(var i = 0; i < object.length; i++) {
+                    for(var j = 0; j < object[i].length; j++) {
+                      if(object[i][j]==element){
+                        return true;
+                      }
+                    }
+                  }
+                  return false;
+                }
+
+                alert(new BackspaceElements([[1,2],[2,3]],0));
+
                 if (self.arrayPos == self.backspaceElement){
                   self.stopNum = self.backspaceIndex;
                 }
@@ -368,6 +384,8 @@
         backspaceElement: 0,
         // index of the target string to stop backspacing
         backspaceIndex: 0,
+        // array of indices [[backspaceElement, backspaceIndex]...]
+        backspaceIndices: [[]],
         // loop
         loop: false,
         // false = infinite
