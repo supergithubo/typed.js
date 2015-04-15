@@ -5,8 +5,9 @@
     <script>
       $(function(){
           $(".typed").typed({
-            strings: ["First sentence.", "Second sentence.", "Third"],
-            typeSpeed: 0
+            strings: ["First sentence.", "Second sentince", "Second sentens", "Second sentence structure"],
+            typeSpeed: 0,
+            backspaceIndices: [[1,11],[2,13]],
           });
       });
     </script>

@@ -252,21 +252,21 @@
 
             self.timeout = setTimeout(function() {
 
-                var BackspaceElements = function(object, element){
+                // get the index of the current array string
+                var getBackspaceIndex = function(object, element){
                   for(var i = 0; i < object.length; i++) {
-                    for(var j = 0; j < object[i].length; j++) {
-                      if(object[i][j]==element){
-                        return true;
-                      }
+                    if(object[i][0]===element){
+                      return i;
                     }
                   }
-                  return false;
-                }
+                  return -1;
+                };
 
-                alert(new BackspaceElements([[1,2],[2,3]],0));
+                var backspaceIndex = getBackspaceIndex(self.backspaceIndices, self.arrayPos);
 
-                if (self.arrayPos == self.backspaceElement){
-                  self.stopNum = self.backspaceIndex;
+                // set the stop number if the current array string is a backspace element
+                if (backspaceIndex != -1) {
+                  self.stopNum = self.backspaceIndices[backspaceIndex][1];
                 }
                 else{
                   self.stopNum = 0;
