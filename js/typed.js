@@ -69,9 +69,6 @@
         // current array position
         this.arrayPos = 0;
 
-        // element from array to perform backspacing
-        this.backspaceElement = this.options.backspaceElement;
-
         // array of backspace strings indices
         this.backspaceIndices = this.options.backspaceIndices;
 
@@ -79,9 +76,6 @@
         // default 0, can change depending on how many chars
         // you want to remove at the time
         this.stopNum = 0;
-
-        // index of the target string backspacing should stop
-        this.backspaceIndex = this.options.backspaceIndex;
 
         // Looping logic
         this.loop = this.options.loop;
@@ -380,10 +374,6 @@
         backSpeed: 0,
         // time before backspacing
         backDelay: 500,
-        // target string from the array to perform trim backspacing
-        backspaceElement: 0,
-        // index of the target string to stop backspacing
-        backspaceIndex: 0,
         // array of indices [[backspaceElement, backspaceIndex]...]
         backspaceIndices: [[]],
         // loop
